@@ -1,3 +1,5 @@
+pipeline {
+      agent any
 stages{
       stage('deploy to S3'){
           steps{
@@ -8,3 +10,9 @@ stages{
           }
       }
   }
+post{
+        always{
+            cleanWs disableDeferredWipeout: true, deleteDirs: true
+        }
+    }
+}
